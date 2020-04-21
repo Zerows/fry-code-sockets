@@ -2,6 +2,7 @@ const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const auth = require('./helpers/auth');
+const port = process.env.PORT || 4000
 
 io.use(auth);
 io.on('connection', client => {
@@ -14,6 +15,6 @@ io.on('connection', client => {
     console.log(e);
   });
 });
-server.listen(4000, () => {
-  console.log("Listening on  4000");
+server.listen(port, () => {
+  console.log("Listening on " + port);
 });
