@@ -7,9 +7,10 @@ const port = process.env.PORT || 4000
 io.use(auth);
 io.on('connection', client => {
   console.log("On Connect");
+  let room = client.handshake.query.room
+  client.join(room)
   client.on('event', data => {
-    console.log(data);
-    client.broadcast.emit('event', data);
+    client.broadcast.to(room).emit('event', data);
   });
   client.on('disconnect', (e) => {
     console.log(e);
