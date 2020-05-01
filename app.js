@@ -4,6 +4,10 @@ const io = require('socket.io')(server);
 const auth = require('./helpers/auth');
 const port = process.env.PORT || 4000
 
+app.use('/healthz', function (req, res) {
+  res.send('Health Check')
+})
+
 io.use(auth);
 io.on('connection', client => {
   console.log("On Connect");
