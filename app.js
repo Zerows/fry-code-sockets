@@ -5,8 +5,8 @@ const auth = require('./helpers/auth');
 const port = process.env.PORT || 4000
 
 app.use('/healthz', function (req, res) {
-  res.status(200);
-  res.send('Health Check')
+  console.log("On Check");
+  res.status(200).send('Health Check')
 })
 
 io.use(auth);
